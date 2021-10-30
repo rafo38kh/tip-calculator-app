@@ -1,13 +1,11 @@
-// - Strong cyan: hsl(172, 67%, 45%)
+$color--cyan: hsl(172, 67%, 45%);
 
-// ### Neutral
-
-// - Very dark cyan: hsl(183, 100%, 15%)
-// - Dark grayish cyan: hsl(186, 14%, 43%)
-// - Dark grayish cyan: hsl(184, 14%, 56%)
-// - Light grayish cyan: hsl(185, 41%, 84%)
-// - Light grayish cyan: hsl(189, 41%, 97%)
-// - White: hsl(0, 0%, 100%)
+$color--veryDarkCyan: hsl(183, 100%, 15%);
+$color--darkCyanOne: hsl(186, 14%, 43%);
+$color--darkCyanTwo: hsl(184, 14%, 56%);
+$color--lightCyanOne: hsl(185, 41%, 84%);
+$color--lightCyanTwo: hsl(189, 41%, 97%);
+$color--white: hsl(0, 0%, 100%);
 
 *,
 *::before,
@@ -24,4 +22,12 @@ html {
 
 body {
   font-size: 1.6rem;
+  font-family: "Space Mono", monospace;
+  background-color: $color--lightCyanOne;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  min-height: 100vh;
 }

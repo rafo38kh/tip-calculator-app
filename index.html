@@ -10,12 +10,89 @@
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" / type="text/css">
     <script defer src="./js/script.js"></script>
     <title>Frontend Mentor | Tip calculator app</title>
   </head>
   <body>
-    Bill Select Tip % 5% 10% 15% 25% 50% Custom Number of People Tip Amount /
-    person Total / person Reset
+    <main class="container">
+      <div class="content">
+        <img src="./images/logo.svg" alt="Spli tter" class="content__logo" />
+
+        <div class="content__main-box">
+          <div class="content__input-box">
+            <form action="#" class="content__form content__dollar">
+              <label class="content__input-title" for="">Bill</label>
+              <input
+                type="text"
+                class="content__input input__dollar-js"
+                placeholder="142.55"
+              />
+            </form>
+            <p class="content__input-title">Select Tip %</p>
+            <div class="content__input-buttons">
+              <button class="content__input-button input__button-js">5%</button>
+              <button class="content__input-button input__button-js">
+                10%
+              </button>
+              <button class="content__input-button input__button-js">
+                15%
+              </button>
+              <button class="content__input-button input__button-js">
+                25%
+              </button>
+              <button class="content__input-button input__button-js">
+                50%
+              </button>
+              <input
+                type="text"
+                class="content__input-custom input__button-js"
+                placeholder="Custom"
+              />
+            </div>
+            <p></p>
+
+            <form action="#" class="content__form content__human">
+              <label class="content__input-title" for=""
+                >Number of People</label
+              >
+              <input
+                type="text"
+                class="content__input input__people-js"
+                placeholder="5"
+              />
+            </form>
+          </div>
+
+          <div class="content__output-boxes">
+            <div class="content__output-box">
+              <div class="content__output-text">
+                <p class="content__output-title">Tip Amount</p>
+                <p class="content__output-subtitle">/ person</p>
+              </div>
+              <p class="content__output-sum">$4.27</p>
+            </div>
+
+            <div class="content__output-box">
+              <div class="content__output-text">
+                <p class="content__output-title">Total</p>
+                <p class="content__output-subtitle">/ person</p>
+              </div>
+
+              <p class="content__output-sum">$32.79</p>
+            </div>
+
+            <button class="content__output-reset">Reset</button>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

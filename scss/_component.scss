@@ -1,0 +1,147 @@
+.content {
+  &__logo {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+    width: 7rem;
+  }
+
+  &__main-box {
+    padding: 3rem;
+    background-color: $color--white;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem 2rem 0 0;
+    // width: 90%;
+  }
+
+  &__input-box {
+    width: 100%;
+  }
+
+  &__input-title {
+    color: $color--darkCyanOne;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 36%;
+      left: 4.5%;
+    }
+  }
+  &__dollar {
+    &::before {
+      content: url("/images/icon-dollar.svg");
+    }
+  }
+
+  &__human {
+    &::before {
+      content: url("/images/icon-person.svg");
+    }
+  }
+
+  &__input {
+    color: $color--veryDarkCyan;
+    background-color: $color--lightCyanTwo;
+    width: 100%;
+    border: none;
+    padding: 1rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    text-align: right;
+  }
+
+  &__input-buttons {
+    display: grid;
+    grid-template-rows: repeat(3);
+    grid-template-columns: repeat(2, 48%);
+    grid-gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  &__input-button {
+    color: $color--white;
+    background-color: $color--veryDarkCyan;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    padding: 1rem;
+    font-size: 2rem;
+    transition: all 0.2s;
+    &:hover {
+      color: $color--veryDarkCyan;
+      background-color: rgba(38, 192, 171, 0.5);
+      cursor: pointer;
+    }
+  }
+
+  &__input-button-active {
+  }
+
+  &__input-custom {
+    color: $color--darkCyanOne;
+    background-color: $color--lightCyanTwo;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__output-boxes {
+    background-color: $color--veryDarkCyan;
+    border-radius: 1rem;
+    padding: 2rem;
+    padding-top: 4rem;
+  }
+  &__output-box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  &__output-text {
+  }
+
+  &__output-title {
+    color: $color--white;
+    font-size: 1.2rem;
+  }
+
+  &__output-subtitle {
+    color: $color--darkCyanTwo;
+    font-size: 1rem;
+  }
+
+  &__output-sum {
+    color: $color--cyan;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  &__output-reset {
+    color: $color--veryDarkCyan;
+    background-color: $color--cyan;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    width: 100%;
+    text-transform: uppercase;
+  }
+}
