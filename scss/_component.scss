@@ -6,6 +6,9 @@
     margin-bottom: 5rem;
     margin-top: 5rem;
     width: 7rem;
+    @media (min-width: 700px) {
+      margin-top: 0;
+    }
   }
 
   &__main-box {
@@ -15,11 +18,24 @@
     justify-content: center;
     align-items: center;
     border-radius: 2rem 2rem 0 0;
-    // width: 90%;
-  }
 
+    @media (min-width: 700px) {
+      border-radius: 2rem;
+    }
+    @media (min-width: 1140px) {
+      grid-template-columns: 1fr 1fr;
+      justify-items: flex-start;
+      grid-gap: 3rem;
+      padding: 2rem 2rem 2rem 3.5rem;
+    }
+  }
   &__input-box {
     width: 100%;
+    @media (min-width: 1140px) {
+      & > * {
+        margin-bottom: 3rem;
+      }
+    }
   }
 
   &__input-title {
@@ -37,8 +53,12 @@
     &::before {
       content: "";
       position: absolute;
-      bottom: 36%;
-      left: 4.5%;
+      top: 4.5rem;
+      left: 1.5rem;
+
+      @media (min-width: 1140px) {
+        top: 3.7rem;
+      }
     }
   }
   &__dollar {
@@ -50,6 +70,9 @@
   &__human {
     &::before {
       content: url("/images/icon-person.svg");
+    }
+    @media (min-width: 1140px) {
+      margin-bottom: 0;
     }
   }
 
@@ -64,8 +87,14 @@
     margin-bottom: 3rem;
     font-size: 2rem;
     text-align: right;
+    caret-color: $color--cyan;
     &:focus-within {
       outline: 0.1rem solid $color--cyan;
+    }
+    @media (min-width: 1140px) {
+      margin-bottom: unset;
+      font-size: 1.8rem;
+      padding: 0.5rem 1.5rem;
     }
   }
 
@@ -76,6 +105,11 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
     margin-bottom: 3rem;
+    @media (min-width: 1140px) {
+      grid-template-rows: repeat(2, 3.5rem);
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 0;
+    }
   }
 
   &__input-button {
@@ -92,10 +126,19 @@
       background-color: rgba(38, 192, 171, 0.5);
       cursor: pointer;
     }
+    &:focus-within {
+      outline: 0.2rem solid $color--cyan;
+    }
+    @media (min-width: 1140px) {
+      font-size: 1.8rem;
+      padding: 0;
+    }
   }
 
-  //   &__input-button-active {
-  //   }
+  &__input-button-active {
+    background-color: hsl(172, 67%, 45%);
+    color: $color--veryDarkCyan;
+  }
 
   &__input-custom {
     color: $color--darkCyanOne;
@@ -107,6 +150,10 @@
     font-size: 2rem;
     text-align: center;
     width: 100%;
+    caret-color: $color--cyan;
+    @media (min-width: 1140px) {
+      height: 100%;
+    }
     &:focus-within {
       outline: 0.1rem solid $color--cyan;
     }
@@ -115,13 +162,19 @@
   &__output-boxes {
     background-color: $color--veryDarkCyan;
     border-radius: 1rem;
-    padding: 2rem;
-    padding-top: 4rem;
+    padding: 4rem 2rem 2rem 2rem;
+    @media (min-width: 1140px) {
+      width: 100%;
+      padding: 3rem;
+    }
   }
   &__output-box {
     display: flex;
     justify-content: space-between;
     margin-bottom: 2rem;
+    @media (min-width: 1140px) {
+      align-items: center;
+    }
   }
   //   &__output-text {
   //   }
@@ -140,6 +193,9 @@
     color: $color--cyan;
     font-size: 2.5rem;
     font-weight: 700;
+    @media (min-width: 1140px) {
+      font-size: 3.5rem;
+    }
   }
 
   &__output-reset {
@@ -152,5 +208,42 @@
     font-weight: 700;
     width: 100%;
     text-transform: uppercase;
+    transition: all 0.2s;
+    &:hover {
+      color: $color--veryDarkCyan;
+      background-color: hsl(173, 61%, 77%);
+      cursor: pointer;
+    }
+    &:focus-within {
+      outline: 0.2rem solid $color--cyan;
+    }
+
+    @media (min-width: 1140px) {
+      margin-top: 7rem;
+      padding: 0.6rem;
+    }
+  }
+}
+
+.attribution {
+  width: 100%;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  text-align: center;
+  margin: 0 auto;
+  background-color: $color--white;
+  @media (min-width: 700px) {
+    background-color: unset;
+  }
+
+  &__link:link,
+  &__link:visited {
+    text-transform: uppercase;
+    color: $color--cyan;
+    transition: all 0.2s;
+  }
+
+  &__link:hover,
+  &__link:active {
+    color: $color--veryDarkCyan;
   }
 }

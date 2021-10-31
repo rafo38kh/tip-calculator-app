@@ -22,8 +22,13 @@
     <title>Frontend Mentor | Tip calculator app</title>
   </head>
   <body>
-    <div class="content">
-      <img src="./images/logo.svg" alt="Spli tter" class="content__logo" />
+    <main class="content">
+      <img
+        src="./images/logo.svg"
+        alt=""
+        class="content__logo"
+        aria-hidden="true"
+      />
 
       <div class="content__main-box">
         <div class="content__input-box">
@@ -39,7 +44,14 @@
           <div class="content__input-buttons">
             <button class="content__input-button input__button-js">5%</button>
             <button class="content__input-button input__button-js">10%</button>
-            <button class="content__input-button input__button-js">15%</button>
+            <button
+              class="
+                content__input-button content__input-button-active
+                input__button-js
+              "
+            >
+              15%
+            </button>
             <button class="content__input-button input__button-js">25%</button>
             <button class="content__input-button input__button-js">50%</button>
             <form action="#" class="content__form">
@@ -83,6 +95,21 @@
           <button class="content__output-reset">Reset</button>
         </div>
       </div>
-    </div>
+    </main>
+    <footer class="attribution">
+      Challenge by
+      <a
+        class="attribution__link"
+        href="https://www.frontendmentor.io?ref=challenge"
+        target="_blank"
+        >Frontend Mentor</a
+      >. Coded by
+      <a
+        class="attribution__link"
+        href="https://github.com/rafo38kh"
+        target="_blank"
+        >rafo38kh</a
+      >.
+    </footer>
   </body>
 </html>
