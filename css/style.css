@@ -84,6 +84,14 @@ body {
       @media (min-width: 1140px) {
         .content__form::before {
           top: 3.7rem; } }
+  .content__error-message {
+    display: flex;
+    justify-content: space-between; }
+  .content__error {
+    color: #b47f6e;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem; }
   .content__dollar::before {
     content: url("/images/icon-dollar.svg"); }
   .content__human::before {
@@ -103,7 +111,7 @@ body {
     font-size: 2rem;
     text-align: right;
     caret-color: #26c0ab; }
-    .content__input:focus-within {
+    .content__input:focus-visible {
       outline: 0.1rem solid #26c0ab; }
     @media (min-width: 1140px) {
       .content__input {
@@ -135,8 +143,6 @@ body {
       color: #00494d;
       background-color: rgba(38, 192, 171, 0.5);
       cursor: pointer; }
-    .content__input-button:focus-within {
-      outline: 0.2rem solid #26c0ab; }
     @media (min-width: 1140px) {
       .content__input-button {
         font-size: 1.8rem;
@@ -152,7 +158,7 @@ body {
     padding: 1rem;
     font-weight: 700;
     font-size: 2rem;
-    text-align: center;
+    text-align: right;
     width: 100%;
     caret-color: #26c0ab; }
     @media (min-width: 1140px) {
@@ -203,8 +209,6 @@ body {
       color: #00494d;
       background-color: #a1e8e0;
       cursor: pointer; }
-    .content__output-reset:focus-within {
-      outline: 0.2rem solid #26c0ab; }
     @media (min-width: 1140px) {
       .content__output-reset {
         margin-top: 7rem;

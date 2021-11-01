@@ -33,31 +33,27 @@
       <div class="content__main-box">
         <div class="content__input-box">
           <form action="#" class="content__form content__dollar">
-            <label class="content__input-title" for="">Bill</label>
+            <div class="content__error-message">
+              <label class="content__input-title" for="">Bill</label>
+              <p class="content__error"></p>
+            </div>
             <input
               type="text"
-              class="content__input input__dollar-js"
-              placeholder="142.55"
+              class="content__input input__js"
+              placeholder="0"
             />
           </form>
           <p class="content__input-title">Select Tip %</p>
           <div class="content__input-buttons">
             <button class="content__input-button input__button-js">5%</button>
             <button class="content__input-button input__button-js">10%</button>
-            <button
-              class="
-                content__input-button content__input-button-active
-                input__button-js
-              "
-            >
-              15%
-            </button>
+            <button class="content__input-button input__button-js">15%</button>
             <button class="content__input-button input__button-js">25%</button>
             <button class="content__input-button input__button-js">50%</button>
             <form action="#" class="content__form">
               <input
                 type="text"
-                class="content__input-custom input__button-js"
+                class="content__input-custom input__js"
                 placeholder="Custom"
               />
             </form>
@@ -65,11 +61,16 @@
           <p></p>
 
           <form action="#" class="content__form content__human">
-            <label class="content__input-title" for="">Number of People</label>
+            <div class="content__error-message">
+              <label class="content__input-title" for=""
+                >Number of People</label
+              >
+              <p class="content__error"></p>
+            </div>
             <input
               type="text"
-              class="content__input input__people-js"
-              placeholder="5"
+              class="content__input input__js"
+              placeholder="0"
             />
           </form>
         </div>
@@ -80,7 +81,7 @@
               <p class="content__output-title">Tip Amount</p>
               <p class="content__output-subtitle">/ person</p>
             </div>
-            <p class="content__output-sum">$4.27</p>
+            <p class="content__output-sum">$0.00</p>
           </div>
 
           <div class="content__output-box">
@@ -89,10 +90,10 @@
               <p class="content__output-subtitle">/ person</p>
             </div>
 
-            <p class="content__output-sum">$32.79</p>
+            <p class="content__output-sum">$0.00</p>
           </div>
 
-          <button class="content__output-reset">Reset</button>
+          <button class="content__output-reset content__reset">Reset</button>
         </div>
       </div>
     </main>
