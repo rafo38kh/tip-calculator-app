@@ -151,7 +151,7 @@ body {
     background-color: #26c0ab;
     color: #00494d; }
   .content__input-custom {
-    color: #5e7a7d;
+    color: #00494d;
     background-color: #f4fafa;
     border: none;
     border-radius: 0.5rem;
@@ -205,10 +205,12 @@ body {
     width: 100%;
     text-transform: uppercase;
     transition: all 0.2s; }
-    .content__output-reset:hover {
+    .content__output-reset:hover:enabled {
       color: #00494d;
       background-color: #a1e8e0;
       cursor: pointer; }
+    .content__output-reset:disabled {
+      opacity: 0.3; }
     @media (min-width: 1140px) {
       .content__output-reset {
         margin-top: 7rem;

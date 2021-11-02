@@ -45,11 +45,36 @@
           </form>
           <p class="content__input-title">Select Tip %</p>
           <div class="content__input-buttons">
-            <button class="content__input-button input__button-js">5%</button>
-            <button class="content__input-button input__button-js">10%</button>
-            <button class="content__input-button input__button-js">15%</button>
-            <button class="content__input-button input__button-js">25%</button>
-            <button class="content__input-button input__button-js">50%</button>
+            <button
+              class="content__input-button input__button-js"
+              data-percentage="5"
+            >
+              5%
+            </button>
+            <button
+              class="content__input-button input__button-js"
+              data-percentage="10"
+            >
+              10%
+            </button>
+            <button
+              class="content__input-button input__button-js"
+              data-percentage="15"
+            >
+              15%
+            </button>
+            <button
+              class="content__input-button input__button-js"
+              data-percentage="25"
+            >
+              25%
+            </button>
+            <button
+              class="content__input-button input__button-js"
+              data-percentage="50"
+            >
+              50%
+            </button>
             <form action="#" class="content__form">
               <input
                 type="text"
@@ -93,7 +118,9 @@
             <p class="content__output-sum">$0.00</p>
           </div>
 
-          <button class="content__output-reset content__reset">Reset</button>
+          <button class="content__output-reset content__reset" disabled>
+            Reset
+          </button>
         </div>
       </div>
     </main>

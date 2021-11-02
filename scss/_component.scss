@@ -152,7 +152,7 @@
   }
 
   &__input-custom {
-    color: $color--darkCyanOne;
+    color: $color--veryDarkCyan;
     background-color: $color--lightCyanTwo;
     border: none;
     border-radius: 0.5rem;
@@ -220,10 +220,14 @@
     width: 100%;
     text-transform: uppercase;
     transition: all 0.2s;
-    &:hover {
+    &:hover:enabled {
       color: $color--veryDarkCyan;
       background-color: hsl(173, 61%, 77%);
       cursor: pointer;
+    }
+
+    &:disabled {
+      opacity: 0.3;
     }
 
     @media (min-width: 1140px) {
