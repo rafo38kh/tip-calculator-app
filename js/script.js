@@ -1,37 +1,46 @@
-const forms = document.querySelectorAll(".content__form");
-const inputs = document.querySelectorAll(".input__js");
-const buttons = document.querySelectorAll(".input__button-js");
-const outputs = document.querySelectorAll(".content__output-sum");
-const reset = document.querySelector(".content__reset");
-const errors = document.querySelectorAll(".content__error");
+const forms = document.querySelectorAll(`.content__form`);
+const inputs = document.querySelectorAll(`.input__js`);
+const buttons = document.querySelectorAll(`.input__button-js`);
+const outputs = document.querySelectorAll(`.content__output-sum`);
+const reset = document.querySelector(`.content__reset`);
+const errors = document.querySelectorAll(`.content__error`);
 
 const [inputDollar, inputTip, inputHuman] = inputs;
 const [errorBill, errorPeople] = errors;
 const [sumTip, sumTotal] = outputs;
 
-const ZERO_REGEX = /^0\d+/g;
-const NUM_REGEX = /[^0-9\.]+/g;
-const PEOPLE_REGEX = /[^0-9]+/g;
-const LETTER_REGEX = /[a-zA-Z,/<>\?;':""[\]\\{}\|`~!@#\$%\^&\*()_=\+]+/g;
+const regexes = {
+  dot: /^\.$/g,
+  zero_regex: /^0\d+/g,
+  num_regex: /[^0-9\.]+/g,
+  people_regex: /[^0-9]+/g,
+  letter_regex: /[a-zA-Z,/<>\?;':""[\]\\{}\|`~!@#\$%\^&\*()_=\+]+/g,
+};
+
+const colors = {
+  errorColor: `hsl(14, 32%, 57%)`,
+  succsesColor: `hsl(183, 100%, 15%)`,
+  succsesOutlineColor: `hsl(172, 67%, 45%)`,
+};
 
 const checkRegex = (reg, input) => new RegExp(reg).test(input);
 
 const removeActiveClass = () => {
   buttons.forEach((btn) =>
-    btn.classList.remove("content__input-button-active")
+    btn.classList.remove(`content__input-button-active`)
   );
 };
 
 const customError = (elem) => {
-  elem.style.outline = "2px solid hsl(14, 32%, 57%)";
-  elem.style.color = "hsl(14, 32%, 57%)";
-  elem.style.caretColor = "hsl(14, 32%, 57%)";
+  elem.style.outline = `2px solid ${colors.errorColor}`;
+  elem.style.color = `${colors.errorColor}`;
+  elem.style.caretColor = `${colors.errorColor}`;
 };
 
 const customSuccess = (elem) => {
-  elem.style.outline = "2px solid hsl(172, 67%, 45%)";
-  elem.style.color = "hsl(183, 100%, 15%)";
-  elem.style.caretColor = "hsl(172, 67%, 45%)";
+  elem.style.outline = `2px solid ${colors.succsesOutlineColor}`;
+  elem.style.color = `${colors.succsesColor}`;
+  elem.style.caretColor = `${colors.succsesOutlineColor}`;
 };
 
 const errorState = (elem, message, errorText) => {
@@ -41,99 +50,123 @@ const errorState = (elem, message, errorText) => {
 
 const successState = (elem, errorText) => {
   customSuccess(elem);
-  errorText.textContent = "";
+  errorText.textContent = ``;
+};
+
+let buttonTip = 0;
+
+const sumOfTip = (percentage) => {
+  const dollar = inputDollar.value;
+  const human = inputHuman.value;
+
+  const tip = ((dollar / 100) * percentage) / human;
+  const person = dollar / human + tip;
+
+  if (dollar > 0 && human > 0) {
+    sumTip.textContent = `$${tip.toFixed(2)}`;
+    sumTotal.textContent = `$${person.toFixed(2)}`;
+  }
 };
 
 buttons.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    reset.removeAttribute("disabled");
+  btn.addEventListener(`click`, (e) => {
+    reset.removeAttribute(`disabled`);
     removeActiveClass();
-    e.target.classList.add("content__input-button-active");
+    inputTip.value = "";
+    inputTip.style.outline = "0";
+    inputTip.style.color = `${colors.succsesColor}`;
+    e.target.classList.add(`content__input-button-active`);
 
-    const active = [...buttons].find((el) =>
-      el.classList.contains("content__input-button-active")
-    );
-    const data = active.dataset.percentage;
+    buttonTip = e.target.dataset.percentage;
 
-    sumOfTip(inputDollar.value, data);
-    // if (inputTip) sumOfTip(inputDollar.value, inputTip.value);
+    sumOfTip(buttonTip);
   });
 });
 
-const sumOfTip = (num, percentage = 0, person) => {
-  percentage = percentage || inputTip.value;
-
-  sumTip.textContent = `$${(((num / 100) * percentage) / person).toFixed(2)}`;
-};
-
-inputDollar.addEventListener("keyup", (e) => {
+inputDollar.addEventListener(`input`, (e) => {
   const val = e.target.value;
 
-  sumOfTip(inputDollar.value);
+  reset.removeAttribute(`disabled`);
 
-  reset.removeAttribute("disabled");
-
-  if (!val || val === "0") errorState(inputDollar, "Can't be zero", errorBill);
-  else if (checkRegex(LETTER_REGEX, val) || checkRegex(NUM_REGEX, val))
-    errorState(inputDollar, "Positive numbers only", errorBill);
-  else if (checkRegex(ZERO_REGEX, val))
-    errorState(inputDollar, "Can't start with zero", errorBill);
-  else if (val.split(".").length > 2)
-    errorState(inputDollar, "can't have two dots", errorBill);
-  else successState(inputDollar, errorBill);
-});
-
-inputHuman.addEventListener("keyup", (e) => {
-  const val = e.target.value;
-
-  sumOfTip(inputDollar.value, 10, val);
-
-  reset.removeAttribute("disabled");
-
-  if (!val || val === "0") errorState(inputHuman, "Can't be zero", errorPeople);
-  else if (checkRegex(LETTER_REGEX, val) || checkRegex(PEOPLE_REGEX, val))
-    errorState(inputHuman, "Positive numbers only", errorPeople);
-  else if (checkRegex(ZERO_REGEX, val))
-    errorState(inputHuman, "Can't start with zero", errorPeople);
-  else successState(inputHuman, errorPeople);
-});
-
-inputTip.addEventListener("keyup", (e) => {
-  const val = e.target.value;
-
-  sumOfTip(inputDollar.value);
-
-  reset.removeAttribute("disabled");
-  if (
-    !val ||
-    val === "0" ||
-    val.split(".").length > 2 ||
-    checkRegex(NUM_REGEX, val) ||
-    checkRegex(ZERO_REGEX, val)
+  if (!val || val === `0`) errorState(inputDollar, `Can't be zero`, errorBill);
+  else if (
+    checkRegex(regexes.letter_regex, val) ||
+    checkRegex(regexes.num_regex, val)
   )
-    customError(inputTip);
-  else customSuccess(inputTip);
-
-  if (val === "") {
-    inputTip.style.outline = "0";
-    inputTip.style.color = "hsl(183, 100%, 15%)";
-    inputTip.style.caretColor = "hsl(172, 67%, 45%)";
+    errorState(inputDollar, `Positive numbers only`, errorBill);
+  else if (checkRegex(regexes.zero_regex, val))
+    errorState(inputDollar, `Can't start with zero`, errorBill);
+  else if (val.split(`.`).length > 2)
+    errorState(inputDollar, `can't have two dots`, errorBill);
+  else {
+    successState(inputDollar, errorBill);
+    sumOfTip(buttonTip);
   }
 });
 
-reset.addEventListener("click", () => {
+inputHuman.addEventListener(`input`, (e) => {
+  const val = e.target.value;
+
+  reset.removeAttribute(`disabled`);
+
+  if (!val || val === `0`) errorState(inputHuman, `Can't be zero`, errorPeople);
+  else if (
+    checkRegex(regexes.letter_regex, val) ||
+    checkRegex(regexes.people_regex, val)
+  )
+    errorState(inputHuman, `Positive numbers only`, errorPeople);
+  else if (checkRegex(regexes.zero_regex, val))
+    errorState(inputHuman, `Can't start with zero`, errorPeople);
+  else {
+    successState(inputHuman, errorPeople);
+    sumOfTip(buttonTip);
+  }
+});
+
+inputTip.addEventListener(`input`, (e) => {
+  const val = e.target.value;
+
+  reset.removeAttribute(`disabled`);
+  if (
+    val < 0 ||
+    val === `0` ||
+    val.split(`.`).length > 2 ||
+    checkRegex(regexes.dot, val) ||
+    checkRegex(regexes.num_regex, val) ||
+    checkRegex(regexes.zero_regex, val)
+  )
+    customError(inputTip);
+  else {
+    customSuccess(inputTip);
+
+    buttonTip = val;
+    sumOfTip(buttonTip);
+  }
+
+  if (val === ``) {
+    inputTip.style.outline = `0`;
+    inputTip.style.color = `${colors.succsesColor}`;
+    inputTip.style.caretColor = `${colors.succsesOutlineColor}`;
+  }
+
+  if (inputTip.value !== "") removeActiveClass();
+});
+
+reset.addEventListener(`click`, () => {
   inputs.forEach((input) => {
-    input.value = "";
-    input.style.outline = "none";
-    input.style.color = "hsl(183, 100%, 15%)";
-    input.style.caretColor = "hsl(172, 67%, 45%)";
+    input.value = ``;
+    input.style.outline = `none`;
+    input.style.color = `${colors.succsesColor}`;
+    input.style.caretColor = `${colors.succsesOutlineColor}`;
   });
-  errors.forEach((error) => (error.textContent = ""));
+  errors.forEach((error) => (error.textContent = ``));
   removeActiveClass();
-  reset.setAttribute("disabled", true);
+  reset.setAttribute(`disabled`, true);
+  outputs.forEach((output) => (output.textContent = `$0.00`));
+  buttonTip = 0;
 });
 
 window.onload = () => {
-  inputs.forEach((el) => (el.value = ""));
-  reset.setAttribute("disabled", true);
+  inputs.forEach((el) => (el.value = ``));
+  reset.setAttribute(`disabled`, true);
 };

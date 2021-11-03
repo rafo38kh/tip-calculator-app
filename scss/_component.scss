@@ -187,8 +187,9 @@
       align-items: center;
     }
   }
-  //   &__output-text {
-  //   }
+  &__output-text {
+    flex-shrink: 0;
+  }
 
   &__output-title {
     color: $color--white;
