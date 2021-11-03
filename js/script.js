@@ -62,7 +62,7 @@ const sumOfTip = (percentage) => {
   const tip = ((dollar / 100) * percentage) / human;
   const person = dollar / human + tip;
 
-  if (dollar > 0 && human > 0) {
+  if (dollar > 0 && dollar < 999999 && human > 0 && human < 999999) {
     sumTip.textContent = `$${tip.toFixed(2)}`;
     sumTotal.textContent = `$${person.toFixed(2)}`;
   }
@@ -94,10 +94,12 @@ inputDollar.addEventListener(`input`, (e) => {
     checkRegex(regexes.num_regex, val)
   )
     errorState(inputDollar, `Positive numbers only`, errorBill);
+  else if (val > 999999)
+    errorState(inputDollar, "Max amount: '999999'", errorBill);
   else if (checkRegex(regexes.zero_regex, val))
     errorState(inputDollar, `Can't start with zero`, errorBill);
   else if (val.split(`.`).length > 2)
-    errorState(inputDollar, `can't have two dots`, errorBill);
+    errorState(inputDollar, `Can't have two dots`, errorBill);
   else {
     successState(inputDollar, errorBill);
     sumOfTip(buttonTip);
@@ -115,6 +117,7 @@ inputHuman.addEventListener(`input`, (e) => {
     checkRegex(regexes.people_regex, val)
   )
     errorState(inputHuman, `Positive numbers only`, errorPeople);
+  else if (val > 999) errorState(inputHuman, "Max people: '999'", errorPeople);
   else if (checkRegex(regexes.zero_regex, val))
     errorState(inputHuman, `Can't start with zero`, errorPeople);
   else {
