@@ -17,12 +17,6 @@ const regexes = {
   letter_regex: /[a-zA-Z,/<>\?;':""[\]\\{}\|`~!@#\$%\^&\*()_=\+]+/g,
 };
 
-const colors = {
-  errorColor: `hsl(14, 32%, 57%)`,
-  succsesColor: `hsl(183, 100%, 15%)`,
-  succsesOutlineColor: `hsl(172, 67%, 45%)`,
-};
-
 const checkRegex = (reg, input) => new RegExp(reg).test(input);
 
 const removeActiveClass = () => {
@@ -31,25 +25,13 @@ const removeActiveClass = () => {
   );
 };
 
-const customError = (elem) => {
-  elem.style.outline = `2px solid ${colors.errorColor}`;
-  elem.style.color = `${colors.errorColor}`;
-  elem.style.caretColor = `${colors.errorColor}`;
-};
-
-const customSuccess = (elem) => {
-  elem.style.outline = `2px solid ${colors.succsesOutlineColor}`;
-  elem.style.color = `${colors.succsesColor}`;
-  elem.style.caretColor = `${colors.succsesOutlineColor}`;
-};
-
 const errorState = (elem, message, errorText) => {
-  customError(elem);
+  elem.classList.add(`content__input--error`);
   errorText.textContent = message;
 };
 
 const successState = (elem, errorText) => {
-  customSuccess(elem);
+  elem.classList.remove(`content__input--error`);
   errorText.textContent = ``;
 };
 
@@ -65,6 +47,11 @@ const sumOfTip = (percentage) => {
   if (dollar > 0 && dollar < 999999 && human > 0 && human < 999999) {
     sumTip.textContent = `$${tip.toFixed(2)}`;
     sumTotal.textContent = `$${person.toFixed(2)}`;
+  } else if (dollar > 0) {
+    sumTotal.textContent = `$${(dollar / 1).toFixed(2)}`;
+  } else if (dollar === `` || human === ``) {
+    sumTip.textContent = `$0.00`;
+    sumTotal.textContent = `$0.00`;
   }
 };
 
@@ -72,13 +59,10 @@ buttons.forEach((btn) => {
   btn.addEventListener(`click`, (e) => {
     reset.removeAttribute(`disabled`);
     removeActiveClass();
-    inputTip.value = "";
-    inputTip.style.outline = "0";
-    inputTip.style.color = `${colors.succsesColor}`;
+    inputTip.value = ``;
+    inputTip.classList.remove(`content__input--error`);
     e.target.classList.add(`content__input-button-active`);
-
     buttonTip = e.target.dataset.percentage;
-
     sumOfTip(buttonTip);
   });
 });
@@ -88,14 +72,14 @@ inputDollar.addEventListener(`input`, (e) => {
 
   reset.removeAttribute(`disabled`);
 
-  if (!val || val === `0`) errorState(inputDollar, `Can't be zero`, errorBill);
+  if (val === `0`) errorState(inputDollar, `Can't be zero`, errorBill);
   else if (
     checkRegex(regexes.letter_regex, val) ||
     checkRegex(regexes.num_regex, val)
   )
     errorState(inputDollar, `Positive numbers only`, errorBill);
   else if (val > 999999)
-    errorState(inputDollar, "Max amount: '999999'", errorBill);
+    errorState(inputDollar, `Max amount: '999999'`, errorBill);
   else if (checkRegex(regexes.zero_regex, val))
     errorState(inputDollar, `Can't start with zero`, errorBill);
   else if (val.split(`.`).length > 2)
@@ -111,13 +95,13 @@ inputHuman.addEventListener(`input`, (e) => {
 
   reset.removeAttribute(`disabled`);
 
-  if (!val || val === `0`) errorState(inputHuman, `Can't be zero`, errorPeople);
+  if (val === `0`) errorState(inputHuman, `Can't be zero`, errorPeople);
   else if (
     checkRegex(regexes.letter_regex, val) ||
     checkRegex(regexes.people_regex, val)
   )
     errorState(inputHuman, `Positive numbers only`, errorPeople);
-  else if (val > 999) errorState(inputHuman, "Max people: '999'", errorPeople);
+  else if (val > 999) errorState(inputHuman, `Max people: '999'`, errorPeople);
   else if (checkRegex(regexes.zero_regex, val))
     errorState(inputHuman, `Can't start with zero`, errorPeople);
   else {
@@ -132,35 +116,32 @@ inputTip.addEventListener(`input`, (e) => {
   reset.removeAttribute(`disabled`);
   if (
     val < 0 ||
+    val > 100 ||
     val === `0` ||
     val.split(`.`).length > 2 ||
     checkRegex(regexes.dot, val) ||
     checkRegex(regexes.num_regex, val) ||
     checkRegex(regexes.zero_regex, val)
   )
-    customError(inputTip);
+    e.target.classList.add(`content__input--error`);
   else {
-    customSuccess(inputTip);
+    e.target.classList.remove(`content__input--error`);
 
     buttonTip = val;
     sumOfTip(buttonTip);
   }
 
   if (val === ``) {
-    inputTip.style.outline = `0`;
-    inputTip.style.color = `${colors.succsesColor}`;
-    inputTip.style.caretColor = `${colors.succsesOutlineColor}`;
+    e.target.classList.remove(`content__input--error`);
   }
 
-  if (inputTip.value !== "") removeActiveClass();
+  removeActiveClass();
 });
 
 reset.addEventListener(`click`, () => {
   inputs.forEach((input) => {
     input.value = ``;
-    input.style.outline = `none`;
-    input.style.color = `${colors.succsesColor}`;
-    input.style.caretColor = `${colors.succsesOutlineColor}`;
+    input.classList.remove(`content__input--error`);
   });
   errors.forEach((error) => (error.textContent = ``));
   removeActiveClass();
