@@ -31,7 +31,7 @@ body {
   font-family: "Space Mono", monospace;
   background-color: $color--lightCyanOne;
   display: grid;
-  justify-content: center;
+  justify-items: center;
   align-items: end;
   grid-template-rows: 1fr auto;
   min-height: 100vh;

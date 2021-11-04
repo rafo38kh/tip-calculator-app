@@ -20,7 +20,7 @@ body {
   font-family: "Space Mono", monospace;
   background-color: #c5e4e7;
   display: grid;
-  justify-content: center;
+  justify-items: center;
   align-items: end;
   grid-template-rows: 1fr auto;
   min-height: 100vh; }
@@ -29,7 +29,6 @@ body {
       align-items: center; } }
 
 .content {
-  max-width: 500px;
   width: 100%; }
   @media (min-width: 1140px) {
     .content {
@@ -213,10 +212,7 @@ body {
   .content__output-sum {
     color: #26c0ab;
     font-size: 2.5rem;
-    font-weight: 700;
-    overflow: auto;
-    width: 28rem;
-    text-align: right; }
+    font-weight: 700; }
     @media (min-width: 1140px) {
       .content__output-sum {
         font-size: 4.5rem; } }
