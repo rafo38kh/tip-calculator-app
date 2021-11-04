@@ -38,6 +38,8 @@ Users should be able to:
 - Semantic HTML5 markup
 - SCSS custom properties
 - CSS Flexbox
+- CSS Grid
+- Vanilla JS
 - Mobile-first workflow
 
 ## Author
