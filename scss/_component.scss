@@ -86,13 +86,13 @@
 
   &__dollar {
     &::before {
-      content: url("/images/icon-dollar.svg");
+      content: url("../images/icon-dollar.svg");
     }
   }
 
   &__human {
     &::before {
-      content: url("/images/icon-person.svg");
+      content: url("../images/icon-person.svg");
     }
     @media (min-width: 1140px) {
       margin-bottom: 0;

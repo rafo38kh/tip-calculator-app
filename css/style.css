@@ -29,6 +29,7 @@ body {
       align-items: center; } }
 
 .content {
+  max-width: 500px;
   width: 100%; }
   @media (min-width: 1140px) {
     .content {
@@ -102,9 +103,9 @@ body {
       .content__error {
         font-size: 1.6rem; } }
   .content__dollar::before {
-    content: url("/images/icon-dollar.svg"); }
+    content: url("../images/icon-dollar.svg"); }
   .content__human::before {
-    content: url("/images/icon-person.svg"); }
+    content: url("../images/icon-person.svg"); }
   @media (min-width: 1140px) {
     .content__human {
       margin-bottom: 0; } }
