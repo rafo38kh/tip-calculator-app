@@ -28,7 +28,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: []()
+- Solution URL: [https://www.frontendmentor.io/solutions/tip-calculator-app-with-css-flexbox-grid-bem-scss-and-vanilla-js-UqGadLora8](https://www.frontendmentor.io/solutions/tip-calculator-app-with-css-flexbox-grid-bem-scss-and-vanilla-js-UqGadLora8)
 - Live Site URL: [https://rafo38kh.github.io/tip-calculator-app/](https://rafo38kh.github.io/tip-calculator-app/)
 
 ## My process
