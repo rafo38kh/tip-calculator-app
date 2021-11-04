@@ -154,3 +154,5 @@ window.onload = () => {
   inputs.forEach((el) => (el.value = ``));
   reset.setAttribute(`disabled`, true);
 };
+
+(() => reset.setAttribute(`disabled`, true))();

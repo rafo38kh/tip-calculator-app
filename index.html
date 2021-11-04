@@ -32,12 +32,13 @@
 
       <div class="content__main-box">
         <div class="content__input-box">
-          <form id="dollar" action="#" class="content__form content__dollar">
+          <form action="#" class="content__form content__dollar">
             <div class="content__error-message">
               <label class="content__input-title" for="dollar">Bill</label>
               <p class="content__error"></p>
             </div>
             <input
+              id="dollar"
               type="text"
               class="content__input input__js"
               placeholder="0"
@@ -90,7 +91,7 @@
             </form>
           </div>
 
-          <form id="human" action="#" class="content__form content__human">
+          <form action="#" class="content__form content__human">
             <div class="content__error-message">
               <label class="content__input-title" for="human"
                 >Number of People</label
@@ -98,6 +99,7 @@
               <p class="content__error"></p>
             </div>
             <input
+              id="human"
               type="text"
               class="content__input input__js"
               placeholder="0"
@@ -124,11 +126,7 @@
             <p class="content__output-sum">$0.00</p>
           </div>
 
-          <button
-            type="reset"
-            class="content__output-reset content__reset"
-            disabled
-          >
+          <button type="reset" class="content__output-reset content__reset">
             Reset
           </button>
         </div>
